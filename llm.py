@@ -30,7 +30,7 @@ class LLMClient:
         from openai import OpenAI
 
         load_env()
-        base_url = os.environ.get("OPENAI_BASE_URL") or os.environ.get("YODB_LLM_ENDPOINT") or DEFAULT_BASE_URL
+        base_url = os.environ.get("OPENAI_BASE_URL") or os.environ.get("LLM_ENDPOINT") or DEFAULT_BASE_URL
         self.client = OpenAI(base_url=base_url, api_key=os.environ["OPENAI_API_KEY"], timeout=request_timeout, max_retries=0)
         self.base_url = base_url
         self.model = model

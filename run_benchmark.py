@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 import threading
 import time
 import traceback
@@ -9,6 +10,7 @@ from pathlib import Path
 import pandas as pd
 
 from executor import check_constraints, run_transform
+from llm import load_env
 from prompting import case_dir, case_length, eval_cases, list_cases
 from strategies import STRATEGIES
 from validate import score_in_subprocess
@@ -109,9 +111,10 @@ def run_case(strategy, case, client, timeout):
 
 
 def main():
+    load_env()
     ap = argparse.ArgumentParser()
     ap.add_argument("--strategy", required=True, help="comma list, e.g. s1,s2,s4,s5")
-    ap.add_argument("--model", default="qwen38-27b")
+    ap.add_argument("--model", default=os.environ.get("LLM_MODEL", "qwen38-27b"), help="defaults to LLM_MODEL from .env")
     ap.add_argument("--cases", default="all", help="'all' (100 eval cases) or comma list")
     ap.add_argument("--workers", type=int, default=10, help="cases processed in parallel (execution + scoring)")
     ap.add_argument("--llm-concurrency", type=int, default=6, help="max LLM requests in flight at once")

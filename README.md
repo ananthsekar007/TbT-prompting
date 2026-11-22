@@ -50,11 +50,12 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-`.env` (not included in the zip) must contain:
+`.env` (not included in the zip; see `.env.example`) must contain:
 
 ```
 OPENAI_API_KEY=<your RC key>
-YODB_LLM_ENDPOINT=https://openai.rc.asu.edu/v1
+LLM_ENDPOINT=https://openai.rc.asu.edu/v1
+LLM_MODEL=qwen38-27b
 ```
 
 The benchmark goes in `benchmarks/smartbuilding-pipelines-v2-split/`.
