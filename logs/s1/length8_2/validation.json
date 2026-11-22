@@ -1,0 +1,75 @@
+{
+ "status": "ok",
+ "error": "",
+ "validation": {
+  "autopipeline": {
+   "accuracy": 1.0,
+   "is_correct": true,
+   "similarities": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "info": [
+    "Hour",
+    "January",
+    "February",
+    "February",
+    "February",
+    "February",
+    "February",
+    "February",
+    "February",
+    "February",
+    "February",
+    "February",
+    "February"
+   ],
+   "log_tail": "THEY ARE OF SAME LENGTH:  24 24\nmap_num = 1 MATCHED\n"
+  },
+  "hard_match": {
+   "accuracy": 0.9294871794871795,
+   "is_correct": false,
+   "similarities": [
+    1.0,
+    0.08333333333333333,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "info": [
+    "Hour",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+   ],
+   "log_tail": "Hour\nTrue\nnum matches: 24\ntotal: 24\nnon-matching tuples:\nJanuary\nTrue\nnum matches: 2\ntotal: 24\nnon-matching tuples:\nFebruary\nTrue\nnum matches: 24\ntotal: 24\nnon-matching tuples:\nMarch\nTrue\nnum matches: 24\ntotal: 24\nnon-matching tuples:\nApril\nTrue\nnum matches: 24\ntotal: 24\nnon-matching tuples:\nMay\nTrue\nnum matches: 24\ntotal: 24\nnon-matching tuples:\nJune\nTrue\nnum matches: 24\ntotal: 24\nnon-matching tuples:\nJuly\nTrue\nnum matches: 24\ntotal: 24\nnon-matching tuples:\nAugust\nTrue\nnum matches: 24\ntotal: 24\nnon-matching tuples:\nSeptember\nTrue\nnum matches: 24\ntotal: 24\nnon-matching tuples:\nOctober\nTrue\nnum matches: 24\ntotal: 24\nnon-matching tuples:\nNovember\nTrue\nnum matches: 24\ntotal: 24\nnon-matching tuples:\nDecember\nTrue\nnum matches: 24\ntotal: 24\nnon-matching tuples:\nCOLUMN SIMILARITY:\n[1.0, 0.08333333333333333, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]\nAVERAGE COLUMN SIMILARITY: 0.9294871794871795\n"
+  }
+ }
+}
