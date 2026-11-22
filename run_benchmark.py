@@ -168,7 +168,8 @@ def main():
                 f.write(json.dumps(row, default=str) + "\n")
             v = row["validation"]
             elapsed = (time.time() - start) / 60
-            print(f"  [{n}/{len(jobs)} {elapsed:5.1f}m] {strategy} {case:<11} {row['status']:<20} "
+            eta = elapsed / n * (len(jobs) - n)
+            print(f"  [{n}/{len(jobs)} {elapsed:5.1f}m, ETA {eta:5.0f}m] {strategy} {case:<11} {row['status']:<20} "
                   f"ap={v['autopipeline']['is_correct']!s:<5} hm={v['hard_match']['is_correct']!s:<5} "
                   f"partial={v['hard_match']['accuracy']:.2f} ({row['wall_s']:.0f}s)", flush=True)
     print(f"== finished in {(time.time() - start) / 60:.1f} min", flush=True)
