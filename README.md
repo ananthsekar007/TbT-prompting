@@ -70,6 +70,16 @@ python summarize.py
 ./make_submission.sh
 ```
 
+### On ASU Sol
+
+```bash
+module load mamba/latest
+mamba create -n a4 -c conda-forge python=3.11 pandas numpy openai matplotlib -y   # once
+sbatch run_sol.sbatch            # all strategies; or: sbatch run_sol.sbatch s4,s5
+squeue -u $USER                  # job status
+tail -f slurm-<jobid>.out        # progress
+```
+
 Runner flags: `--timeout 120` (seconds per execution), `--max-tokens 4000`, `--request-timeout 900`, `--reasoning-effort none`,
 `--workers 10` (strategy x case jobs in parallel; execution and scoring run in subprocesses), `--llm-concurrency 6`
 (max requests in flight to the gateway),
