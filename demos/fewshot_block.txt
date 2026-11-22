@@ -1,0 +1,390 @@
+Here are worked examples from other cases of the same benchmark.
+
+=== Example 1 ===
+### Source table (sample: training chunk)
+rows: 5673, columns: 29
+exact column names: ['Strata_ID', 'Strata', 'DT_STRATA', 'DOW', 'PCT_HOURLY_0100', 'PCT_HOURLY_0200', 'PCT_HOURLY_0300', 'PCT_HOURLY_0400', 'PCT_HOURLY_0500', 'PCT_HOURLY_0600', 'PCT_HOURLY_0700', 'PCT_HOURLY_0800', 'PCT_HOURLY_0900', 'PCT_HOURLY_1000', 'PCT_HOURLY_1100', 'PCT_HOURLY_1200', 'PCT_HOURLY_1300', 'PCT_HOURLY_1400', 'PCT_HOURLY_1500', 'PCT_HOURLY_1600', 'PCT_HOURLY_1700', 'PCT_HOURLY_1800', 'PCT_HOURLY_1900', 'PCT_HOURLY_2000', 'PCT_HOURLY_2100', 'PCT_HOURLY_2200', 'PCT_HOURLY_2300', 'PCT_HOURLY_2400', 'PCT_HOURLY_2500']
+column details:
+  'Strata_ID': dtype=int64, nulls=0, distinct=16, min=16, max=34
+  'Strata': dtype=object, nulls=0, distinct=16, e.g. 'RC402 Strata 3', 'RC402 Strata 4', 'RC902 Strata 1'
+  'DT_STRATA': dtype=object, nulls=0, distinct=366, first='7/2/2016', last='12/31/2016'
+  'DOW': dtype=object, nulls=0, distinct=9, values=['1', '2', '3', '4', '5', '6', '7', 'D', 'H']
+  'PCT_HOURLY_0100': dtype=float64, nulls=0, distinct=956, min=0.00046822, max=0.00392811
+  'PCT_HOURLY_0200': dtype=float64, nulls=0, distinct=961, min=0.000462129, max=0.00392811
+  'PCT_HOURLY_0300': dtype=float64, nulls=0, distinct=946, min=0, max=0.00392811
+  'PCT_HOURLY_0400': dtype=float64, nulls=0, distinct=939, min=0.000470078, max=0.00392811
+  'PCT_HOURLY_0500': dtype=float64, nulls=0, distinct=921, min=0.00043812, max=0.00350378
+  'PCT_HOURLY_0600': dtype=float64, nulls=0, distinct=940, min=0.0003268, max=0.00260104
+  'PCT_HOURLY_0700': dtype=float64, nulls=0, distinct=972, min=0, max=0.00246914
+  'PCT_HOURLY_0800': dtype=float64, nulls=0, distinct=969, min=0, max=0.0026473
+  'PCT_HOURLY_0900': dtype=float64, nulls=0, distinct=972, min=0, max=0.00267815
+  'PCT_HOURLY_1000': dtype=float64, nulls=0, distinct=1018, min=0, max=0.00274801
+  'PCT_HOURLY_1100': dtype=float64, nulls=0, distinct=1023, min=0, max=0.00279464
+  'PCT_HOURLY_1200': dtype=float64, nulls=0, distinct=1033, min=0, max=0.00279706
+  'PCT_HOURLY_1300': dtype=float64, nulls=0, distinct=1031, min=0, max=0.00268075
+  'PCT_HOURLY_1400': dtype=float64, nulls=0, distinct=1039, min=0, max=0.00267629
+  'PCT_HOURLY_1500': dtype=float64, nulls=0, distinct=1037, min=0, max=0.00304229
+  'PCT_HOURLY_1600': dtype=float64, nulls=0, distinct=1038, min=0, max=0.00323021
+  'PCT_HOURLY_1700': dtype=float64, nulls=0, distinct=1026, min=0, max=0.00350659
+  'PCT_HOURLY_1800': dtype=float64, nulls=0, distinct=1035, min=0, max=0.00365342
+  'PCT_HOURLY_1900': dtype=float64, nulls=0, distinct=1033, min=0, max=0.00327725
+  'PCT_HOURLY_2000': dtype=float64, nulls=0, distinct=1010, min=0, max=0.00342227
+  'PCT_HOURLY_2100': dtype=float64, nulls=0, distinct=1002, min=0.000521528, max=0.00342227
+  'PCT_HOURLY_2200': dtype=float64, nulls=0, distinct=995, min=0.000535167, max=0.00392811
+  'PCT_HOURLY_2300': dtype=float64, nulls=0, distinct=972, min=0.000525052, max=0.00392811
+  'PCT_HOURLY_2400': dtype=float64, nulls=0, distinct=975, min=0.000525206, max=0.00392811
+  'PCT_HOURLY_2500': dtype=float64, nulls=0, distinct=15, min=0, max=0.00246914
+sample rows (CSV, 5 rows):
+Strata_ID,Strata,DT_STRATA,DOW,PCT_HOURLY_0100,PCT_HOURLY_0200,PCT_HOURLY_0300,PCT_HOURLY_0400,PCT_HOURLY_0500,PCT_HOURLY_0600,PCT_HOURLY_0700,PCT_HOURLY_0800,PCT_HOURLY_0900,PCT_HOURLY_1000,PCT_HOURLY_1100,PCT_HOURLY_1200,PCT_HOURLY_1300,PCT_HOURLY_1400,PCT_HOURLY_1500,PCT_HOURLY_1600,PCT_HOURLY_1700,PCT_HOURLY_1800,PCT_HOURLY_1900,PCT_HOURLY_2000,PCT_HOURLY_2100,PCT_HOURLY_2200,PCT_HOURLY_2300,PCT_HOURLY_2400,PCT_HOURLY_2500
+16,RC402 Strata 3,7/2/2016,7,0.000701052392087,0.00068504483232,0.000718634465929,0.000718765675436,0.000676647423918,0.000720865027536,0.000770855849431,0.001631852629681,0.001900700908062,0.001917233305854,0.00191736451536,0.001954890434158,0.001982444430478,0.001553520554428,0.001335581564487,0.001363135560807,0.001175505966818,0.001029338576815,0.00101503674063,0.000946282959336,0.000937360712908,0.000895242461391,0.00086099678025,0.00083239310788,0.0
+16,RC402 Strata 3,7/3/2016,1,0.000761146345966,0.000741202501011,0.00077479213462,0.000772692782519,0.000731361788039,0.000731624207052,0.00071049947654,0.00071259882864,0.000787781875742,0.000866769998527,0.000883696024837,0.000924764600305,0.000954680367738,0.000972918489112,0.001029207367309,0.001050463307327,0.001058204668198,0.001058335877704,0.001027501643727,0.000972262441581,0.000969375832442,0.000929750561544,0.000894061575834,0.000891831014227,0.0
+18,RC902 Strata 1,11/16/2016,4,0.001394916305022,0.001394916305022,0.001394916305022,0.001394916305022,0.001394916305022,0.001472411655301,0.001472411655301,0.001007439553627,0.000929944203348,0.00154990700558,0.001394916305022,0.00154990700558,0.001782393056417,0.001627402355859,0.001472411655301,0.001472411655301,0.00154990700558,0.002169869807812,0.001782393056417,0.001627402355859,0.00154990700558,0.001472411655301,0.001472411655301,0.001472411655301,0.0
+30,NJ 301 Strata 1,11/24/2016,H,0.001403584538976,0.001313611171093,0.000953717699561,0.000989707046714,0.000935723025984,0.001259627150363,0.001313611171093,0.001583531274743,0.001817462031239,0.002069387461311,0.002321312891384,0.002249334197078,0.001709493989779,0.001511552580436,0.001619520621896,0.001709493989779,0.001529547254013,0.001673504642626,0.001781472684086,0.001709493989779,0.001583531274743,0.001511552580436,0.001475563233283,0.001565536601166,0.0
+34,NJ 301 Strata 5,12/31/2016,7,0.001201592581013,0.001084823396025,0.000998188194259,0.000975587706842,0.001005721690064,0.001028322177482,0.00106598965651,0.001137557866665,0.001246793555848,0.001295761278585,0.001291994530682,0.001269394043265,0.001235493312139,0.001190292337305,0.001216659572625,0.001261860547459,0.001431364203088,0.001751537774831,0.001826872732889,0.00181557248918,0.001811805741277,0.001728937287414,0.001585800867105,0.001461498186311,0.0
+
+### Target table
+rows: 5673, columns: 25
+exact column names: ['cst', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']
+column details:
+  'cst': dtype=object, nulls=0, distinct=366, first='Fri 01/01/2016', last='Fri 07/01/2016'
+  '1:00': dtype=float64, nulls=0, distinct=1312, min=0.000204282, max=0.00263927
+  '2:00': dtype=float64, nulls=0, distinct=1324, min=0.000199419, max=0.00261196
+  '3:00': dtype=float64, nulls=0, distinct=1308, min=0, max=0.0025983
+  '4:00': dtype=float64, nulls=0, distinct=1295, min=0.000191312, max=0.0025983
+  '5:00': dtype=float64, nulls=0, distinct=1270, min=0.000189691, max=0.0025944
+  '6:00': dtype=float64, nulls=0, distinct=1325, min=0.000184827, max=0.00246176
+  '7:00': dtype=float64, nulls=0, distinct=1330, min=0.000170235, max=0.00332067
+  '8:00': dtype=float64, nulls=0, distinct=1335, min=0.000162129, max=0.00393689
+  '9:00': dtype=float64, nulls=0, distinct=1327, min=0.000165372, max=0.00365241
+  '10:00': dtype=float64, nulls=0, distinct=1352, min=0.000165372, max=0.00365241
+  '11:00': dtype=float64, nulls=0, distinct=1364, min=0.000175099, max=0.00288886
+  '12:00': dtype=float64, nulls=0, distinct=1364, min=0.000189691, max=0.00299081
+  '13:00': dtype=float64, nulls=0, distinct=1363, min=0.000186448, max=0.00321316
+  '14:00': dtype=float64, nulls=0, distinct=1364, min=0.000186448, max=0.00330668
+  '15:00': dtype=float64, nulls=0, distinct=1371, min=0.000181584, max=0.00331083
+  '16:00': dtype=float64, nulls=0, distinct=1358, min=0.000186448, max=0.00332413
+  '17:00': dtype=float64, nulls=0, distinct=1362, min=0.000176721, max=0.00334284
+  '18:00': dtype=float64, nulls=0, distinct=1348, min=0.000173478, max=0.0031125
+  '19:00': dtype=float64, nulls=0, distinct=1346, min=0.000173478, max=0.00322053
+  '20:00': dtype=float64, nulls=0, distinct=1344, min=0.000175099, max=0.00300133
+  '21:00': dtype=float64, nulls=0, distinct=1350, min=0.000194555, max=0.00337615
+  '22:00': dtype=float64, nulls=0, distinct=1328, min=0.000207525, max=0.00276668
+  '23:00': dtype=float64, nulls=0, distinct=1328, min=0.000204282, max=0.00370361
+  '24:00': dtype=float64, nulls=0, distinct=1338, min=0.000199419, max=0.00378247
+sample rows (CSV, 5 rows):
+cst,1:00,2:00,3:00,4:00,5:00,6:00,7:00,8:00,9:00,10:00,11:00,12:00,13:00,14:00,15:00,16:00,17:00,18:00,19:00,20:00,21:00,22:00,23:00,24:00
+Fri 01/01/2016,0.00122201710824,0.00127401783625,0.001131015834222,0.00122201710824,0.00122201710824,0.001261017654247,0.001144016016224,0.001170016380229,0.001170016380229,0.001209016926237,0.001183016562232,0.001235017290242,0.001157016198227,0.001001014014196,0.001014014196199,0.001144016016224,0.001209016926237,0.001547021658303,0.001560021840306,0.001534021476301,0.001573022022308,0.001573022022308,0.00132601856426,0.001170016380229
+Sat 01/02/2016,0.001313018382257,0.001248017472245,0.00122201710824,0.001196016744234,0.001196016744234,0.001287018018252,0.001300018200255,0.001339018746262,0.001352018928265,0.001404019656275,0.001417019838278,0.00132601856426,0.001313018382257,0.001352018928265,0.001339018746262,0.001391019474273,0.001404019656275,0.001495020930293,0.001521021294298,0.001508021112296,0.001534021476301,0.001534021476301,0.001469020566288,0.001339018746262
+Tue 05/17/2016,0.001172457898103,0.001023235983799,0.000895331485824,0.000842037945001,0.000810061820507,0.000852696653166,0.000969942442976,0.00111916435728,0.001172457898103,0.001247068855255,0.001438925602217,0.001556171392027,0.001620123641015,0.001652099765508,0.001769345555319,0.001971861010446,0.002067789383927,0.002185035173737,0.002312939671712,0.002217011298231,0.002153059049243,0.001993178426775,0.001641441057344,0.001311021104242
+Wed 05/25/2016,0.001047338708246,0.001004553033072,0.000973146526827,0.001001366865772,0.001037325039588,0.00106600054529,0.001186164569182,0.001338190266077,0.001567139144933,0.001693220336669,0.001791536356217,0.001841604699506,0.001853439035192,0.001837963365448,0.001829770363819,0.001813384360561,0.001748750681043,0.00159490431712,0.001524353469759,0.001455168122669,0.001412382447495,0.001330907597962,0.001178426734311,0.001073738380162
+Fri 07/01/2016,0.000987745163322,0.000968982203923,0.000984858554184,0.000973443327137,0.000926732742899,0.000928044837962,0.00161741958399,0.001706904467277,0.001758863431766,0.001851759762217,0.001891253823609,0.001940588597973,0.001979689030846,0.001984937411097,0.00202653082459,0.002043456850901,0.002068517866602,0.002078358579573,0.001461542690522,0.00135067065771,0.000807594511191,0.00075996546041,0.000736872587303,0.000734248397177
+
+TARGET_COLUMNS = ['cst', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']
+
+## Plan
+1. Row granularity: one source row per (strata, day) and the target has the same number of rows, so this is a row-preserving reshape. No grouping.
+2. Key column: target `cst` looks like "Fri 01/01/2016". It comes from `DT_STRATA` ("1/1/2016"), parsed as %m/%d/%Y and re-formatted as "%a %m/%d/%Y" (abbreviated weekday, zero-padded month/day).
+3. Value columns: `PCT_HOURLY_0100` ... `PCT_HOURLY_2400` map to `1:00` ... `24:00`. `PCT_HOURLY_2500` has no target counterpart and is dropped.
+4. Drop `Strata_ID`, `Strata`, `DOW`; they do not appear in the target.
+5. Return exactly the target columns in target order.
+
+## Code
+```python
+import pandas as pd
+
+
+def transform(source: pd.DataFrame) -> pd.DataFrame:
+    df = source.copy()
+    out = pd.DataFrame()
+    dates = pd.to_datetime(df["DT_STRATA"], format="%m/%d/%Y")
+    out["cst"] = dates.dt.strftime("%a %m/%d/%Y")
+    for h in range(1, 25):
+        out[f"{h}:00"] = pd.to_numeric(df[f"PCT_HOURLY_{h:02d}00"], errors="coerce")
+    return out
+```
+
+=== Example 2 ===
+### Source table (sample: training chunk)
+rows: 1339, columns: 25
+exact column names: ['CST', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00:00']
+column details:
+  'CST': dtype=object, nulls=0, distinct=1339, first='Sat 12/01/2012', last='Sun 07/31/2016'
+  '1:00': dtype=float64, nulls=0, distinct=1264, min=0.741099, max=2.394
+  '2:00': dtype=float64, nulls=0, distinct=1265, min=0, max=2.1282
+  '3:00': dtype=float64, nulls=0, distinct=1252, min=0.6882, max=1.9611
+  '4:00': dtype=float64, nulls=0, distinct=1240, min=0.666, max=1.86
+  '5:00': dtype=float64, nulls=0, distinct=1250, min=0.66652, max=1.7862
+  '6:00': dtype=float64, nulls=0, distinct=1253, min=0.6984, max=1.8225
+  '7:00': dtype=float64, nulls=0, distinct=1261, min=0.7582, max=1.935
+  '8:00': dtype=float64, nulls=0, distinct=1263, min=0.851, max=2.1704
+  '9:00': dtype=float64, nulls=0, distinct=1246, min=0.8606, max=2.3257
+  '10:00': dtype=float64, nulls=0, distinct=1261, min=0.863, max=2.5961
+  '11:00': dtype=float64, nulls=0, distinct=1269, min=0.8374, max=2.9182
+  '12:00': dtype=float64, nulls=0, distinct=1269, min=0.8063, max=3.132
+  '13:00': dtype=float64, nulls=0, distinct=1286, min=0.8084, max=3.3113
+  '14:00': dtype=float64, nulls=0, distinct=1274, min=0.8203, max=3.4429
+  '15:00': dtype=float64, nulls=0, distinct=1291, min=0.7875, max=3.5693
+  '16:00': dtype=float64, nulls=0, distinct=1283, min=0.8121, max=3.6184
+  '17:00': dtype=float64, nulls=0, distinct=1292, min=0.8639, max=3.6205
+  '18:00': dtype=float64, nulls=0, distinct=1298, min=0.920046, max=3.6485
+  '19:00': dtype=float64, nulls=0, distinct=1309, min=0.948488, max=3.6618
+  '20:00': dtype=float64, nulls=0, distinct=1280, min=1.0007, max=3.5821
+  '21:00': dtype=float64, nulls=0, distinct=1288, min=1.1178, max=3.4009
+  '22:00': dtype=float64, nulls=0, distinct=1282, min=1.07707, max=3.1731
+  '23:00': dtype=float64, nulls=0, distinct=1285, min=0.9536, max=2.8964
+  '24:00:00': dtype=float64, nulls=0, distinct=1269, min=0.836, max=2.6425
+sample rows (CSV, 5 rows):
+CST,1:00,2:00,3:00,4:00,5:00,6:00,7:00,8:00,9:00,10:00,11:00,12:00,13:00,14:00,15:00,16:00,17:00,18:00,19:00,20:00,21:00,22:00,23:00,24:00:00
+Sat 12/01/2012,0.9841,0.9108,0.8984,0.8885,0.8862,0.9581,1.046,1.1122,1.2147,1.1852,1.1524,1.1049,1.0682,1.0974,1.0834,1.1493,1.3282,1.4428,1.4292,1.4211,1.3784,1.3059,1.2054,1.0633
+Sun 12/02/2012,0.9012,0.8254,0.788,0.7752,0.7643,0.7859,0.874,0.9773,0.9993,1.0312,1.0133,1.0472,1.0438,0.9789,1.0178,1.1206,1.3755,1.5493,1.5475,1.4983,1.4834,1.3954,1.2309,1.0031
+Tue 08/13/2013,1.2492,1.0945,1.0478,0.9682,0.9032,0.958,1.008,1.0338,1.07,1.2165,1.2156,1.2247,1.2463,1.2619,1.3184,1.342,1.3399,1.4057,1.4076,1.3801,1.4236,1.3792,1.2254,1.0243
+Sun 02/02/2014,1.3247,1.2516,1.2406,1.2172,1.2299,1.2521,1.3305,1.4441,1.5034,1.5062,1.4968,1.4343,1.432,1.4603,1.5359,1.5984,1.6207,1.8221,1.8755,1.8821,1.8282,1.754,1.6086,1.4413
+Sun 07/31/2016,1.305,1.137,1.035,0.966,0.942,0.95,0.956,1.117,1.254,1.448,1.543,1.793,1.935,2.044,2.228,2.248,2.353,2.318,2.253,2.142,2.048,1.982,1.749,1.512
+
+### Target table
+rows: 1340, columns: 27
+exact column names: ['dt_strata', 'dow', 'pct_hourly_0100', 'pct_hourly_0200', 'pct_hourly_0300', 'pct_hourly_0400', 'pct_hourly_0500', 'pct_hourly_0600', 'pct_hourly_0700', 'pct_hourly_0800', 'pct_hourly_0900', 'pct_hourly_1000', 'pct_hourly_1100', 'pct_hourly_1200', 'pct_hourly_1300', 'pct_hourly_1400', 'pct_hourly_1500', 'pct_hourly_1600', 'pct_hourly_1700', 'pct_hourly_1800', 'pct_hourly_1900', 'pct_hourly_2000', 'pct_hourly_2100', 'pct_hourly_2200', 'pct_hourly_2300', 'pct_hourly_2400', 'pct_hourly_2500']
+column details:
+  'dt_strata': dtype=object, nulls=0, distinct=1340, first='04/01/2009', last='11/30/2012'
+  'dow': dtype=int64, nulls=0, distinct=7, values=[1, 2, 3, 4, 5, 6, 7]
+  'pct_hourly_0100': dtype=float64, nulls=0, distinct=331, min=0.74, max=2.7319
+  'pct_hourly_0200': dtype=float64, nulls=0, distinct=323, min=0.69, max=2.4359
+  'pct_hourly_0300': dtype=float64, nulls=0, distinct=309, min=0.67, max=2.2301
+  'pct_hourly_0400': dtype=float64, nulls=0, distinct=303, min=0.66, max=2.0891
+  'pct_hourly_0500': dtype=float64, nulls=0, distinct=299, min=0.67, max=2.0342
+  'pct_hourly_0600': dtype=float64, nulls=0, distinct=292, min=0.69, max=2.0155
+  'pct_hourly_0700': dtype=float64, nulls=0, distinct=297, min=0.75, max=2.0623
+  'pct_hourly_0800': dtype=float64, nulls=0, distinct=304, min=0.83, max=2.2277
+  'pct_hourly_0900': dtype=float64, nulls=0, distinct=319, min=0.82, max=2.5386
+  'pct_hourly_1000': dtype=float64, nulls=0, distinct=333, min=0.83, max=2.842
+  'pct_hourly_1100': dtype=float64, nulls=0, distinct=348, min=0.81, max=3.1381
+  'pct_hourly_1200': dtype=float64, nulls=0, distinct=365, min=0.79, max=3.4214
+  'pct_hourly_1300': dtype=float64, nulls=0, distinct=386, min=0.78, max=3.6883
+  'pct_hourly_1400': dtype=float64, nulls=0, distinct=395, min=0.77, max=3.8272
+  'pct_hourly_1500': dtype=float64, nulls=0, distinct=406, min=0.79, max=3.9353
+  'pct_hourly_1600': dtype=float64, nulls=0, distinct=424, min=0.8, max=3.9439
+  'pct_hourly_1700': dtype=float64, nulls=0, distinct=423, min=0.83, max=3.9586
+  'pct_hourly_1800': dtype=float64, nulls=0, distinct=423, min=0.88, max=4.0181
+  'pct_hourly_1900': dtype=float64, nulls=0, distinct=425, min=0.92, max=3.9981
+  'pct_hourly_2000': dtype=float64, nulls=0, distinct=402, min=1, max=3.9184
+  'pct_hourly_2100': dtype=float64, nulls=0, distinct=383, min=1.07, max=3.7743
+  'pct_hourly_2200': dtype=float64, nulls=0, distinct=381, min=1.06, max=3.5942
+  'pct_hourly_2300': dtype=float64, nulls=0, distinct=356, min=0.93, max=3.3543
+  'pct_hourly_2400': dtype=float64, nulls=0, distinct=347, min=0.83, max=3.0388
+  'pct_hourly_2500': dtype=int64, nulls=0, distinct=1, values=[0]
+sample rows (CSV, 5 rows):
+dt_strata,dow,pct_hourly_0100,pct_hourly_0200,pct_hourly_0300,pct_hourly_0400,pct_hourly_0500,pct_hourly_0600,pct_hourly_0700,pct_hourly_0800,pct_hourly_0900,pct_hourly_1000,pct_hourly_1100,pct_hourly_1200,pct_hourly_1300,pct_hourly_1400,pct_hourly_1500,pct_hourly_1600,pct_hourly_1700,pct_hourly_1800,pct_hourly_1900,pct_hourly_2000,pct_hourly_2100,pct_hourly_2200,pct_hourly_2300,pct_hourly_2400,pct_hourly_2500
+04/01/2009,3,1.02,0.96,0.96,0.94,1.0,1.1,1.21,1.23,1.15,1.12,1.16,1.08,1.03,1.03,1.05,1.05,1.08,1.17,1.22,1.37,1.41,1.35,1.22,1.03,0
+04/02/2009,4,0.93,0.87,0.86,0.87,0.92,1.03,1.13,1.17,1.14,1.11,1.12,1.08,0.99,1.01,1.04,1.08,1.17,1.27,1.33,1.46,1.45,1.42,1.22,1.1,0
+12/03/2010,5,1.07,1.06,1.01,1.01,1.06,1.14,1.32,1.3,1.22,1.21,1.12,1.07,1.07,1.13,1.12,1.24,1.49,1.61,1.58,1.61,1.57,1.59,1.43,1.24,0
+09/01/2012,6,1.6125,1.464,1.3509,1.2658,1.2251,1.2232,1.2838,1.3837,1.4904,1.5316,1.572,1.5739,1.5372,1.5718,1.5923,1.5956,1.6337,1.6901,1.6477,1.6918,1.7037,1.6416,1.611,1.4779,0
+11/30/2012,5,0.9232,0.9133,0.8799,0.8761,0.9009,0.9916,1.1667,1.1637,1.0682,1.0955,1.077,0.9887,0.9835,0.9966,0.9004,1.0141,1.23,1.4828,1.5021,1.4838,1.4692,1.3986,1.2066,1.1325,0
+
+TARGET_COLUMNS = ['dt_strata', 'dow', 'pct_hourly_0100', 'pct_hourly_0200', 'pct_hourly_0300', 'pct_hourly_0400', 'pct_hourly_0500', 'pct_hourly_0600', 'pct_hourly_0700', 'pct_hourly_0800', 'pct_hourly_0900', 'pct_hourly_1000', 'pct_hourly_1100', 'pct_hourly_1200', 'pct_hourly_1300', 'pct_hourly_1400', 'pct_hourly_1500', 'pct_hourly_1600', 'pct_hourly_1700', 'pct_hourly_1800', 'pct_hourly_1900', 'pct_hourly_2000', 'pct_hourly_2100', 'pct_hourly_2200', 'pct_hourly_2300', 'pct_hourly_2400', 'pct_hourly_2500']
+
+## Plan
+1. Row granularity: one row per day in both tables, so this is a row-preserving reshape.
+2. Key column: `CST` holds "Wed 04/01/2009". Strip the weekday prefix, parse %m/%d/%Y, and write `dt_strata` as "%m/%d/%Y".
+3. Derived column: `dow` is an integer day of week. Values run 1..7, so use the ISO convention computed from the parsed date (Monday=1 ... Sunday=7), not the text prefix.
+4. Value columns: the 24 hourly columns (`1:00` ... `23:00`, `24:00:00`) map in order to `pct_hourly_0100` ... `pct_hourly_2400`. Match by position because the last header is irregular.
+5. `pct_hourly_2500` is a constant 0 in the target, so add it as a constant.
+6. Return exactly the target columns.
+
+## Code
+```python
+import pandas as pd
+
+
+def transform(source: pd.DataFrame) -> pd.DataFrame:
+    df = source.copy()
+    df.columns = [c.strip() for c in df.columns]
+    dates = pd.to_datetime(df["CST"].str.split().str[-1], format="%m/%d/%Y")
+
+    out = pd.DataFrame()
+    out["dt_strata"] = dates.dt.strftime("%m/%d/%Y")
+    out["dow"] = dates.dt.isocalendar().day.astype(int)
+
+    hour_cols = [c for c in df.columns if c != "CST"]
+    for h, col in enumerate(hour_cols, start=1):
+        out[f"pct_hourly_{h:02d}00"] = pd.to_numeric(df[col], errors="coerce")
+    out["pct_hourly_2500"] = 0
+    return out
+```
+
+=== Example 3 ===
+### Source table (sample: training chunk)
+rows: 5673, columns: 29
+exact column names: ['Strata_ID', 'Strata', 'DT_STRATA', 'DOW', 'PCT_HOURLY_0100', 'PCT_HOURLY_0200', 'PCT_HOURLY_0300', 'PCT_HOURLY_0400', 'PCT_HOURLY_0500', 'PCT_HOURLY_0600', 'PCT_HOURLY_0700', 'PCT_HOURLY_0800', 'PCT_HOURLY_0900', 'PCT_HOURLY_1000', 'PCT_HOURLY_1100', 'PCT_HOURLY_1200', 'PCT_HOURLY_1300', 'PCT_HOURLY_1400', 'PCT_HOURLY_1500', 'PCT_HOURLY_1600', 'PCT_HOURLY_1700', 'PCT_HOURLY_1800', 'PCT_HOURLY_1900', 'PCT_HOURLY_2000', 'PCT_HOURLY_2100', 'PCT_HOURLY_2200', 'PCT_HOURLY_2300', 'PCT_HOURLY_2400', 'PCT_HOURLY_2500']
+column details:
+  'Strata_ID': dtype=int64, nulls=0, distinct=16, min=16, max=34
+  'Strata': dtype=object, nulls=0, distinct=16, e.g. 'RC402 Strata 3', 'RC402 Strata 4', 'RC902 Strata 1'
+  'DT_STRATA': dtype=object, nulls=0, distinct=366, first='7/2/2016', last='12/31/2016'
+  'DOW': dtype=object, nulls=0, distinct=9, values=['1', '2', '3', '4', '5', '6', '7', 'D', 'H']
+  'PCT_HOURLY_0100': dtype=float64, nulls=0, distinct=956, min=0.00046822, max=0.00392811
+  'PCT_HOURLY_0200': dtype=float64, nulls=0, distinct=961, min=0.000462129, max=0.00392811
+  'PCT_HOURLY_0300': dtype=float64, nulls=0, distinct=946, min=0, max=0.00392811
+  'PCT_HOURLY_0400': dtype=float64, nulls=0, distinct=939, min=0.000470078, max=0.00392811
+  'PCT_HOURLY_0500': dtype=float64, nulls=0, distinct=921, min=0.00043812, max=0.00350378
+  'PCT_HOURLY_0600': dtype=float64, nulls=0, distinct=940, min=0.0003268, max=0.00260104
+  'PCT_HOURLY_0700': dtype=float64, nulls=0, distinct=972, min=0, max=0.00246914
+  'PCT_HOURLY_0800': dtype=float64, nulls=0, distinct=969, min=0, max=0.0026473
+  'PCT_HOURLY_0900': dtype=float64, nulls=0, distinct=972, min=0, max=0.00267815
+  'PCT_HOURLY_1000': dtype=float64, nulls=0, distinct=1018, min=0, max=0.00274801
+  'PCT_HOURLY_1100': dtype=float64, nulls=0, distinct=1023, min=0, max=0.00279464
+  'PCT_HOURLY_1200': dtype=float64, nulls=0, distinct=1033, min=0, max=0.00279706
+  'PCT_HOURLY_1300': dtype=float64, nulls=0, distinct=1031, min=0, max=0.00268075
+  'PCT_HOURLY_1400': dtype=float64, nulls=0, distinct=1039, min=0, max=0.00267629
+  'PCT_HOURLY_1500': dtype=float64, nulls=0, distinct=1037, min=0, max=0.00304229
+  'PCT_HOURLY_1600': dtype=float64, nulls=0, distinct=1038, min=0, max=0.00323021
+  'PCT_HOURLY_1700': dtype=float64, nulls=0, distinct=1026, min=0, max=0.00350659
+  'PCT_HOURLY_1800': dtype=float64, nulls=0, distinct=1035, min=0, max=0.00365342
+  'PCT_HOURLY_1900': dtype=float64, nulls=0, distinct=1033, min=0, max=0.00327725
+  'PCT_HOURLY_2000': dtype=float64, nulls=0, distinct=1010, min=0, max=0.00342227
+  'PCT_HOURLY_2100': dtype=float64, nulls=0, distinct=1002, min=0.000521528, max=0.00342227
+  'PCT_HOURLY_2200': dtype=float64, nulls=0, distinct=995, min=0.000535167, max=0.00392811
+  'PCT_HOURLY_2300': dtype=float64, nulls=0, distinct=972, min=0.000525052, max=0.00392811
+  'PCT_HOURLY_2400': dtype=float64, nulls=0, distinct=975, min=0.000525206, max=0.00392811
+  'PCT_HOURLY_2500': dtype=float64, nulls=0, distinct=15, min=0, max=0.00246914
+sample rows (CSV, 5 rows):
+Strata_ID,Strata,DT_STRATA,DOW,PCT_HOURLY_0100,PCT_HOURLY_0200,PCT_HOURLY_0300,PCT_HOURLY_0400,PCT_HOURLY_0500,PCT_HOURLY_0600,PCT_HOURLY_0700,PCT_HOURLY_0800,PCT_HOURLY_0900,PCT_HOURLY_1000,PCT_HOURLY_1100,PCT_HOURLY_1200,PCT_HOURLY_1300,PCT_HOURLY_1400,PCT_HOURLY_1500,PCT_HOURLY_1600,PCT_HOURLY_1700,PCT_HOURLY_1800,PCT_HOURLY_1900,PCT_HOURLY_2000,PCT_HOURLY_2100,PCT_HOURLY_2200,PCT_HOURLY_2300,PCT_HOURLY_2400,PCT_HOURLY_2500
+16,RC402 Strata 3,7/2/2016,7,0.000701052392087,0.00068504483232,0.000718634465929,0.000718765675436,0.000676647423918,0.000720865027536,0.000770855849431,0.001631852629681,0.001900700908062,0.001917233305854,0.00191736451536,0.001954890434158,0.001982444430478,0.001553520554428,0.001335581564487,0.001363135560807,0.001175505966818,0.001029338576815,0.00101503674063,0.000946282959336,0.000937360712908,0.000895242461391,0.00086099678025,0.00083239310788,0.0
+16,RC402 Strata 3,7/3/2016,1,0.000761146345966,0.000741202501011,0.00077479213462,0.000772692782519,0.000731361788039,0.000731624207052,0.00071049947654,0.00071259882864,0.000787781875742,0.000866769998527,0.000883696024837,0.000924764600305,0.000954680367738,0.000972918489112,0.001029207367309,0.001050463307327,0.001058204668198,0.001058335877704,0.001027501643727,0.000972262441581,0.000969375832442,0.000929750561544,0.000894061575834,0.000891831014227,0.0
+18,RC902 Strata 1,11/16/2016,4,0.001394916305022,0.001394916305022,0.001394916305022,0.001394916305022,0.001394916305022,0.001472411655301,0.001472411655301,0.001007439553627,0.000929944203348,0.00154990700558,0.001394916305022,0.00154990700558,0.001782393056417,0.001627402355859,0.001472411655301,0.001472411655301,0.00154990700558,0.002169869807812,0.001782393056417,0.001627402355859,0.00154990700558,0.001472411655301,0.001472411655301,0.001472411655301,0.0
+30,NJ 301 Strata 1,11/24/2016,H,0.001403584538976,0.001313611171093,0.000953717699561,0.000989707046714,0.000935723025984,0.001259627150363,0.001313611171093,0.001583531274743,0.001817462031239,0.002069387461311,0.002321312891384,0.002249334197078,0.001709493989779,0.001511552580436,0.001619520621896,0.001709493989779,0.001529547254013,0.001673504642626,0.001781472684086,0.001709493989779,0.001583531274743,0.001511552580436,0.001475563233283,0.001565536601166,0.0
+34,NJ 301 Strata 5,12/31/2016,7,0.001201592581013,0.001084823396025,0.000998188194259,0.000975587706842,0.001005721690064,0.001028322177482,0.00106598965651,0.001137557866665,0.001246793555848,0.001295761278585,0.001291994530682,0.001269394043265,0.001235493312139,0.001190292337305,0.001216659572625,0.001261860547459,0.001431364203088,0.001751537774831,0.001826872732889,0.00181557248918,0.001811805741277,0.001728937287414,0.001585800867105,0.001461498186311,0.0
+
+### Target table
+rows: 5673, columns: 26
+exact column names: ['month', 'daytype', 'hr1', 'hr2', 'hr3', 'hr4', 'hr5', 'hr6', 'hr7', 'hr8', 'hr9', 'hr10', 'hr11', 'hr12', 'hr13', 'hr14', 'hr15', 'hr16', 'hr17', 'hr18', 'hr19', 'hr20', 'hr21', 'hr22', 'hr23', 'hr24']
+column details:
+  'month': dtype=object, nulls=0, distinct=12, values=['April    ', 'August   ', 'December ', 'February ', 'January  ', 'July     ', 'June     ', 'March    ', 'May      ', 'November ', 'October  ', 'September']
+  'daytype': dtype=object, nulls=0, distinct=1, values=['weekday']
+  'hr1': dtype=float64, nulls=0, distinct=1312, min=0.000204282, max=0.00263927
+  'hr2': dtype=float64, nulls=0, distinct=1324, min=0.000199419, max=0.00261196
+  'hr3': dtype=float64, nulls=0, distinct=1308, min=0, max=0.0025983
+  'hr4': dtype=float64, nulls=0, distinct=1295, min=0.000191312, max=0.0025983
+  'hr5': dtype=float64, nulls=0, distinct=1270, min=0.000189691, max=0.0025944
+  'hr6': dtype=float64, nulls=0, distinct=1325, min=0.000184827, max=0.00246176
+  'hr7': dtype=float64, nulls=0, distinct=1330, min=0.000170235, max=0.00332067
+  'hr8': dtype=float64, nulls=0, distinct=1335, min=0.000162129, max=0.00393689
+  'hr9': dtype=float64, nulls=0, distinct=1327, min=0.000165372, max=0.00365241
+  'hr10': dtype=float64, nulls=0, distinct=1352, min=0.000165372, max=0.00365241
+  'hr11': dtype=float64, nulls=0, distinct=1364, min=0.000175099, max=0.00288886
+  'hr12': dtype=float64, nulls=0, distinct=1364, min=0.000189691, max=0.00299081
+  'hr13': dtype=float64, nulls=0, distinct=1363, min=0.000186448, max=0.00321316
+  'hr14': dtype=float64, nulls=0, distinct=1364, min=0.000186448, max=0.00330668
+  'hr15': dtype=float64, nulls=0, distinct=1371, min=0.000181584, max=0.00331083
+  'hr16': dtype=float64, nulls=0, distinct=1358, min=0.000186448, max=0.00332413
+  'hr17': dtype=float64, nulls=0, distinct=1362, min=0.000176721, max=0.00334284
+  'hr18': dtype=float64, nulls=0, distinct=1348, min=0.000173478, max=0.0031125
+  'hr19': dtype=float64, nulls=0, distinct=1346, min=0.000173478, max=0.00322053
+  'hr20': dtype=float64, nulls=0, distinct=1344, min=0.000175099, max=0.00300133
+  'hr21': dtype=float64, nulls=0, distinct=1350, min=0.000194555, max=0.00337615
+  'hr22': dtype=float64, nulls=0, distinct=1328, min=0.000207525, max=0.00276668
+  'hr23': dtype=float64, nulls=0, distinct=1328, min=0.000204282, max=0.00370361
+  'hr24': dtype=float64, nulls=0, distinct=1338, min=0.000199419, max=0.00378247
+sample rows (CSV, 5 rows):
+month,daytype,hr1,hr2,hr3,hr4,hr5,hr6,hr7,hr8,hr9,hr10,hr11,hr12,hr13,hr14,hr15,hr16,hr17,hr18,hr19,hr20,hr21,hr22,hr23,hr24
+January  ,weekday,0.00122201710824,0.00127401783625,0.001131015834222,0.00122201710824,0.00122201710824,0.001261017654247,0.001144016016224,0.001170016380229,0.001170016380229,0.001209016926237,0.001183016562232,0.001235017290242,0.001157016198227,0.001001014014196,0.001014014196199,0.001144016016224,0.001209016926237,0.001547021658303,0.001560021840306,0.001534021476301,0.001573022022308,0.001573022022308,0.00132601856426,0.001170016380229
+January  ,weekday,0.001313018382257,0.001248017472245,0.00122201710824,0.001196016744234,0.001196016744234,0.001287018018252,0.001300018200255,0.001339018746262,0.001352018928265,0.001404019656275,0.001417019838278,0.00132601856426,0.001313018382257,0.001352018928265,0.001339018746262,0.001391019474273,0.001404019656275,0.001495020930293,0.001521021294298,0.001508021112296,0.001534021476301,0.001534021476301,0.001469020566288,0.001339018746262
+May      ,weekday,0.001172457898103,0.001023235983799,0.000895331485824,0.000842037945001,0.000810061820507,0.000852696653166,0.000969942442976,0.00111916435728,0.001172457898103,0.001247068855255,0.001438925602217,0.001556171392027,0.001620123641015,0.001652099765508,0.001769345555319,0.001971861010446,0.002067789383927,0.002185035173737,0.002312939671712,0.002217011298231,0.002153059049243,0.001993178426775,0.001641441057344,0.001311021104242
+May      ,weekday,0.001047338708246,0.001004553033072,0.000973146526827,0.001001366865772,0.001037325039588,0.00106600054529,0.001186164569182,0.001338190266077,0.001567139144933,0.001693220336669,0.001791536356217,0.001841604699506,0.001853439035192,0.001837963365448,0.001829770363819,0.001813384360561,0.001748750681043,0.00159490431712,0.001524353469759,0.001455168122669,0.001412382447495,0.001330907597962,0.001178426734311,0.001073738380162
+July     ,weekday,0.000987745163322,0.000968982203923,0.000984858554184,0.000973443327137,0.000926732742899,0.000928044837962,0.00161741958399,0.001706904467277,0.001758863431766,0.001851759762217,0.001891253823609,0.001940588597973,0.001979689030846,0.001984937411097,0.00202653082459,0.002043456850901,0.002068517866602,0.002078358579573,0.001461542690522,0.00135067065771,0.000807594511191,0.00075996546041,0.000736872587303,0.000734248397177
+
+TARGET_COLUMNS = ['month', 'daytype', 'hr1', 'hr2', 'hr3', 'hr4', 'hr5', 'hr6', 'hr7', 'hr8', 'hr9', 'hr10', 'hr11', 'hr12', 'hr13', 'hr14', 'hr15', 'hr16', 'hr17', 'hr18', 'hr19', 'hr20', 'hr21', 'hr22', 'hr23', 'hr24']
+
+## Plan
+1. Row granularity: same row count in source and target, so no aggregation; each source day becomes one target row.
+2. `month` is the full month name of `DT_STRATA` right-padded with spaces to 9 characters ("January  ", "September"), i.e. strftime("%B").ljust(9).
+3. `daytype` holds the single value "weekday" in every target row, so it is a constant.
+4. `PCT_HOURLY_0100` ... `PCT_HOURLY_2400` map to `hr1` ... `hr24`; drop `PCT_HOURLY_2500`, `Strata_ID`, `Strata`, `DOW`, `DT_STRATA`.
+5. Return exactly the target columns.
+
+## Code
+```python
+import pandas as pd
+
+
+def transform(source: pd.DataFrame) -> pd.DataFrame:
+    df = source.copy()
+    dates = pd.to_datetime(df["DT_STRATA"], format="%m/%d/%Y")
+
+    out = pd.DataFrame()
+    out["month"] = dates.dt.strftime("%B").str.ljust(9)
+    out["daytype"] = "weekday"
+    for h in range(1, 25):
+        out[f"hr{h}"] = pd.to_numeric(df[f"PCT_HOURLY_{h:02d}00"], errors="coerce")
+    return out
+```
+
+=== Example 4 ===
+### Source table (sample: training chunk)
+rows: 74848, columns: 2
+exact column names: ['date', 'cerc_logger_1']
+column details:
+  'date': dtype=object, nulls=0, distinct=74848, first='7/28/2019 4:50', last='1/1/2021 0:00'
+  'cerc_logger_1': dtype=float64, nulls=0, distinct=1279, min=19.5, max=85
+sample rows (CSV, 5 rows):
+date,cerc_logger_1
+7/28/2019 4:50,24.562
+7/28/2019 5:00,24.625
+8/9/2019 1:30,23.375
+5/29/2020 10:40,23.375
+1/1/2021 0:00,22.437
+
+### Target table
+rows: 24, columns: 13
+exact column names: ['Hour', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+column details:
+  'Hour': dtype=int64, nulls=0, distinct=24, min=0, max=23
+  'January': dtype=float64, nulls=0, distinct=14, min=23.437, max=85
+  'February': dtype=float64, nulls=0, distinct=12, values=[23.25, 23.312, 23.375, 23.437, 23.5, 23.562, 23.625, 23.687, 23.75, 23.875, 23.937, 24.0]
+  'March': dtype=float64, nulls=0, distinct=16, min=23.937, max=25.062
+  'April': dtype=float64, nulls=0, distinct=16, min=23.75, max=24.937
+  'May': dtype=float64, nulls=0, distinct=12, values=[23.562, 23.625, 23.687, 23.75, 23.875, 23.937, 24.125, 24.25, 24.312, 24.375, 24.437, 24.5]
+  'June': dtype=float64, nulls=0, distinct=11, values=[23.562, 23.625, 23.687, 23.75, 23.812, 23.875, 23.937, 24.0, 24.062, 24.125, 24.187]
+  'July': dtype=float64, nulls=0, distinct=11, values=[23.75, 23.812, 23.875, 24.0, 24.062, 24.125, 24.187, 24.375, 24.437, 24.562, 24.625]
+  'August': dtype=float64, nulls=0, distinct=12, values=[23.937, 24.0, 24.062, 24.125, 24.312, 24.375, 24.437, 24.5, 24.562, 24.75, 24.812, 24.875]
+  'September': dtype=float64, nulls=0, distinct=16, min=24.375, max=26
+  'October': dtype=float64, nulls=0, distinct=15, min=24.625, max=25.937
+  'November': dtype=float64, nulls=0, distinct=15, min=24.5, max=85
+  'December': dtype=float64, nulls=0, distinct=6, values=[23.125, 23.187, 23.312, 23.5, 25.75, 85.0]
+sample rows (CSV, 5 rows):
+Hour,January,February,March,April,May,June,July,August,September,October,November,December
+0,24.562,24.0,25.0,24.937,24.312,24.187,24.437,24.312,25.875,25.75,25.5,85.0
+1,24.312,24.0,24.875,24.937,24.312,24.062,24.437,24.437,25.812,25.5,25.312,85.0
+10,23.5,23.312,24.062,23.937,23.625,23.625,23.812,24.5,24.437,24.687,24.625,23.187
+15,23.5,23.312,23.937,24.062,23.75,23.625,23.812,24.125,24.812,24.812,24.625,23.125
+23,24.5,23.937,25.062,24.937,24.5,24.187,24.437,24.375,25.812,25.937,25.5,25.75
+
+TARGET_COLUMNS = ['Hour', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+## Plan
+1. Row granularity: the source is a long 10-minute time series (tens of thousands of rows); the target has exactly 24 rows (Hour 0..23) and one column per month. That is a group-by on (hour, month) followed by a pivot.
+2. Parse `date` ("2/22/2018 0:30") with format "%m/%d/%Y %H:%M"; derive `Hour` = hour of day (0..23) and month number.
+3. Aggregation: target values equal readings that appear in the source (e.g. 24.562), not averages with long decimals, and they sit at the top of each hour's range, so the aggregate is `max`.
+4. Pivot: index `Hour`, columns month 1..12 renamed to "January" ... "December"; reindex so all 12 months exist even if a month is missing (it becomes NaN).
+5. Reset the index so `Hour` is a column and return [Hour, January, ..., December].
+
+## Code
+```python
+import pandas as pd
+
+
+def transform(source: pd.DataFrame) -> pd.DataFrame:
+    df = source.copy()
+    ts = pd.to_datetime(df["date"], format="%m/%d/%Y %H:%M")
+    df["Hour"] = ts.dt.hour
+    df["month"] = ts.dt.month
+    df["value"] = pd.to_numeric(df["cerc_logger_1"], errors="coerce")
+
+    pivot = df.pivot_table(index="Hour", columns="month", values="value", aggfunc="max")
+    pivot = pivot.reindex(columns=range(1, 13))
+    month_names = ["January", "February", "March", "April", "May", "June", "July",
+                   "August", "September", "October", "November", "December"]
+    pivot.columns = month_names
+    out = pivot.reset_index()
+    return out[["Hour"] + month_names]
+```
+
+=== End of examples ===
